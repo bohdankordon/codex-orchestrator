@@ -1,0 +1,2 @@
+* text=auto eol=lf
+orchestrator/agents/openai.yaml -text -whitespace

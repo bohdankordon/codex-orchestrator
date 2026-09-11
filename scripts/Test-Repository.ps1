@@ -106,7 +106,11 @@ function Test-Check([string]$Name, [scriptblock]$Body) {
     Write-Host ('  [' + $status + '] ' + $Name) -ForegroundColor $colour
 }
 
-$allFiles = @(Get-ChildItem -LiteralPath $repoRoot -Recurse -File -Force)
+$gitMetadataRoot = Join-Path $repoRoot '.git'
+$gitMetadataPattern = $gitMetadataRoot + '\*'
+$allFiles = @(Get-ChildItem -LiteralPath $repoRoot -Recurse -File -Force | Where-Object {
+    $_.FullName -ne $gitMetadataRoot -and $_.FullName -notlike $gitMetadataPattern
+})
 $textExtensions = @('.md', '.toml', '.ps1', '.yml', '.yaml', '.json', '.jsonl', '.js', '.mjs', '.txt', '.csv')
 $textFileNames = @('VERSION', 'LICENSE', '.gitignore', '.gitattributes')
 
@@ -129,7 +133,7 @@ Write-Head 'checks'
 Test-Check 'required repository files exist' {
     $required = @(
         'README.md', 'BASELINE.md', 'CHANGELOG.md', 'CONTRIBUTING.md', 'SECURITY.md',
-        'VERSION', 'LICENSE', 'NOTICE.md', '.gitignore',
+        'VERSION', 'LICENSE', 'NOTICE.md', '.gitignore', '.gitattributes',
         'orchestrator/SKILL.md',
         'orchestrator/references/handoff-contract.md',
         'orchestrator/references/workflow-patterns.md',
@@ -380,7 +384,9 @@ Test-Check 'known raw telemetry material is absent' {
     )
     $forbiddenExtensions = @('.raw.json', '.diag.json')
 
-    $directories = @(Get-ChildItem -LiteralPath $repoRoot -Recurse -Directory -Force)
+    $directories = @(Get-ChildItem -LiteralPath $repoRoot -Recurse -Directory -Force | Where-Object {
+        $_.FullName -ne $gitMetadataRoot -and $_.FullName -notlike $gitMetadataPattern
+    })
     foreach ($directory in $directories) {
         if ($forbiddenContainers -contains $directory.Name.ToLowerInvariant()) {
             Fail ('raw or generated container directory is present: ' + (Get-RepoRelative $directory.FullName))
