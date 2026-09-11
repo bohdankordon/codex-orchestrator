@@ -149,6 +149,7 @@ Test-Check 'required repository files exist' {
         'docs/decisions/0004-reuse-before-respawn.md',
         'docs/decisions/0005-thin-root-v12.md',
         'docs/release-checklist.md',
+        'docs/planner-integration.md',
         'benchmarks/README.md',
         'benchmarks/role-selection/README.md',
         'benchmarks/role-selection/results/phase-a.md',

@@ -100,6 +100,18 @@ Both are legitimate outcomes of the same workflow. They are examples, not
 pipelines: a task may mix them, stop early, or skip a role the evidence does not
 require.
 
+## Planner integration
+
+Product and architecture planning can happen in ChatGPT or another external
+planner. When implementation is handed to Codex, provide the objective,
+established context, constraints, and acceptance criteria, then begin with
+`Use $orchestrator.` Do not preselect workers or prescribe a delegation
+pipeline: repository execution planning belongs to the orchestrator.
+
+See [docs/planner-integration.md](docs/planner-integration.md) for fresh-thread
+and continuation handoffs, examples, and a copy-paste migration instruction for
+an existing planning chat.
+
 ## Validation
 
 | Case | Score | Sol requests | Native 5h delta |
