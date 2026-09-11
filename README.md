@@ -64,7 +64,9 @@ Root stays the objective, decision, coordination, and integration layer. Direct
 root work is allowed and is often the cheapest correct answer for a small,
 well-understood task.
 
-## Current routing
+## Routing profiles
+
+The released v1.2 baseline remains stable:
 
 | Role | Model | Effort |
 | --- | --- | --- |
@@ -75,10 +77,28 @@ well-understood task.
 | reviewer | `opencode-go/glm-5.3-flash` | max |
 | debugger | `opencode-go/muse-spark-1.3-contributor` | xhigh |
 
+The repository also documents two tested alternatives:
+
+- **Muse-root profile:** Muse Spark 1.3 Contributor xhigh as root, with the v1.2
+  worker routing unchanged.
+- **Muse + Luna Mapper field-test profile:** Muse xhigh as root and native Luna
+  max as Code Mapper, with DeepSeek implementation, Luna verification, GLM
+  review, and Muse debugging unchanged.
+
+The Muse-root challenge scored 96.8/100 against the historical Sol baseline at
+97.2/100 with no hard failures, and both production-cost cases retained 100/100.
+The isolated Luna Code Mapper challenge scored 99.5/100 against the frozen Muse
+mapper baseline at 98.0/100 with no hard-boundary failures. The specific
+Muse-root -> Luna-mapper handoff remains a field-test edge because the root
+correctly chose direct work in the measured integration smoke task.
+
 The worker TOMLs in `agents/` contain no model or reasoning-effort fields. They
-are model-neutral role contracts, and routing is maintained separately in the
-orchestrator routing reference. Changing a model is an overlay change, not a role
-change. See [docs/model-routing.md](docs/model-routing.md).
+are model-neutral role contracts, and routing is maintained separately. Changing
+a model is an overlay change, not a role change.
+
+See [docs/model-routing.md](docs/model-routing.md) for routing semantics and
+[docs/routing-profiles.md](docs/routing-profiles.md) for exact profile tables,
+evidence status, and local field-test guidance.
 
 ## Example adaptive behaviour
 
