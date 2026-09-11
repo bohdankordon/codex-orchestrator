@@ -1,0 +1,13 @@
+Use $orchestrator.
+
+There is a bug in the default session refresh-token rotation path: after a
+successful POST /session/rotate, the presented old refresh token is still
+usable.
+
+Investigate the real production-default path, make the smallest correct fix so
+that a successful rotation invalidates the presented token while the newly
+issued token stays valid, keep the response contract and the optional
+SESSION_V2 path exactly as they are, add or adjust directly relevant durable
+regression coverage, and verify the behavior you changed.
+
+Preserve unrelated work.

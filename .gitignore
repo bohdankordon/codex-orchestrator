@@ -1,0 +1,57 @@
+# Secrets and local credential material
+.env
+.env.*
+*.pem
+*.key
+*.pfx
+*.p12
+secrets.json
+
+# Raw provider/account telemetry and measurement capture
+measurements/
+usage.jsonl
+requests-window.jsonl
+*.raw.json
+*.diag.json
+*.stderr.txt
+*.stdout.txt
+SPAWN_LOG*.jsonl
+INTEGRATED_FROZEN.json
+account-attribution*.csv
+
+# Local benchmark run output
+generated/
+runs/
+*.local.json
+*.local.md
+
+# Logs
+*.log
+logs/
+
+# Local scratch
+tmp/
+.tmp/
+work/
+
+# Node
+node_modules/
+coverage/
+.nyc_output/
+npm-debug.log*
+yarn-error.log*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Editors and OS junk
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini

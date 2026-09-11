@@ -1,0 +1,51 @@
+name: Bug report
+description: Report reproducible incorrect behaviour in the workflow, its role contracts, routing, or scripts.
+title: "bug: "
+body:
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed behaviour
+      description: What actually happened.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+      description: What you expected instead, and which rule or document you expected it to follow.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: The smallest steps that reproduce it - the task you gave the orchestrator, or the command you ran.
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Runtime and configuration context
+      description: Codex/OpenCodex version, multi-agent runtime version, root model and effort, and any routing overrides. Do not paste credentials.
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Logs or evidence
+      description: Relevant output, error text, file hashes, or observed role behaviour. Redact account identifiers, quota figures, and tokens.
+    validations:
+      required: false
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: The contents of VERSION, or the release tag you are running.
+      placeholder: 1.2.0
+    validations:
+      required: true

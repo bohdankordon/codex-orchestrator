@@ -1,0 +1,12 @@
+Use $orchestrator.
+
+A persisted-event test fails after the event-format migration.
+
+Current production emits version 2, version 1 is intentionally unsupported,
+and production validation must not be weakened.
+
+Diagnose the cause, make the smallest cause-removing correction so the migrated
+persisted fixture succeeds while version 1 input is still rejected, keep the
+version-2-only production contract intact, and verify the relevant behavior.
+
+Do not do unrelated cleanup.
